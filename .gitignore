@@ -1,0 +1,19 @@
+## Python
+__pycache__/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+### react ###
+.DS_*
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+
+# Environments
+.env
+.venv
+env/
+venv/
