@@ -10,10 +10,6 @@ function Choice() {
   const roundFromCanvas = location.state?.round || 1; // 초기값 1
   const totalScoreFromCanvas = location.state?.totalScore || 0; // 초기값 0
 
-  /*
-   * round: 현재 라운드 번호를 관리하는 상태
-   * setRound: 라운드 번호를 업데이트하는 함수
-   */
   const [round] = useState(roundFromCanvas); // 현재 라운드 상태
   const [totalScore] = useState(totalScoreFromCanvas); // 총점 상태
 
