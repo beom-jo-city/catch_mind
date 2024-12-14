@@ -42,18 +42,29 @@ npm start
 
 프로젝트의 주요 폴더와 파일 구조는 다음과 같습니다.
 
-```csharp
+```plaintext
 ai-catchmind/
-├── src/               # 애플리케이션의 주요 소스 코드가 위치
-│   ├── components/    # React 컴포넌트
-│   ├── pages/         # 페이지 단위 컴포넌트
-│   ├── styles/        # CSS 또는 스타일 관련 파일
-│   └── index.js       # 앱의 진입점
-├── public/            # 정적 파일 (HTML, 이미지 등)
-│   └── index.html     # 메인 HTML 파일
-├── package.json       # 의존성 및 스크립트 정의
-├── package-lock.json  # 의존성 버전 고정 파일
-└── README.md          # 프로젝트 설명 파일
+├── src/                           # React 소스 코드가 위치한 디렉토리
+│   ├── api/                       # FastAPI와 통신하는 API 함수 모듈화
+│   │   ├── api.js                 # FastAPI와의 키워드, 캔버스 데이터 전송 함수 정의
+│   ├── assets/                    # 프로젝트에 사용되는 정적 자산 저장
+│   │   ├── title.png              # Home 화면 로고 이미지
+│   ├── components/                # React 컴포넌트 관리 디렉토리
+│   │   ├── Home.js                # Home 화면 (Start, Quit, Developer 버튼 및 리더보드)
+│   │   ├── Home.css               # Home 화면의 스타일링 정의
+│   │   ├── Choice.js              # Quickdraw 제시어 선택 및 Canvas로 데이터 전달
+│   │   ├── Choice.css             # Choice 화면의 스타일링 정의
+│   │   ├── Canvas.js              # 캔버스 및 추론 결과 화면 구현
+│   │   ├── Canvas.css             # Canvas 화면의 스타일링 정의
+│   ├── App.js                     # 라우터 설정 및 전체 애플리케이션 관리
+│   ├── index.js                   # React 애플리케이션의 진입점
+│   ├── index.css                  # 글로벌 스타일 정의
+├── public/                        # 정적 파일 제공 디렉토리 (빌드된 파일이 저장될 위치)
+│   ├── index.html                 # React 애플리케이션의 HTML 템플릿
+├── package.json                   # 프로젝트의 의존성 및 스크립트 설정
+├── package-lock.json              # 의존성 설치 시 버전 고정을 위한 파일
+├── README.md                      # 프로젝트 설명 및 사용 방법
+
 ```
 
 - `src/` 폴더: 프로젝트의 핵심 코드가 위치합니다. React 컴포넌트, 스타일 파일 등을 포함합니다.
