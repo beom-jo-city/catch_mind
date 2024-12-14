@@ -1,5 +1,21 @@
 // API 호출 관련 유틸리티 함수
 
+// 리더보드 데이터를 가져오는 함수
+export const fetchLeaderboardFromAPI = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/leaderboard");
+      if (response.ok) {
+        return await response.json(); // JSON 데이터를 반환
+      } else {
+        console.error("Failed to fetch leaderboard data.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error while fetching leaderboard data:", error);
+      return null;
+    }
+};
+
 // FastAPI로 키워드와 증강 조건 전송
 export const sendKeywordToAPI = async (keyword, augmentation) => {
     try {
