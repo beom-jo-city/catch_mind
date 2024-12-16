@@ -29,7 +29,7 @@ export const sendKeywordToAPI = async (keyword, augmentation) => {
   
       if (response.ok) {
         const data = await response.json();
-        return data; // 추론 결과 반환
+        return data;
       } else {
         console.error("Failed to send keyword and augmentation");
         return null;
@@ -54,7 +54,7 @@ export const sendCanvasToAPI = async (imageData) => {
       if (response.ok) {
         const data = await response.json();
         console.log("Image sent successfully:", data.message); // 서버로부터 확인 메시지 출력
-        return data;
+        return data;  // 추론 결과 반환
       } else {
         console.error("Failed to send image to FastAPI");
         return null;
