@@ -65,3 +65,31 @@ export const sendCanvasToAPI = async (imageData) => {
     }
 };
   
+// 사용자 닉네임, 총점, 제출 시간 전송
+export const sendFinalSubmissionToAPI = async (nickname, totalScore) => {
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/submit-userinfo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nickname: nickname,
+        total_score: totalScore,
+        submission_time: new Date().toISOString(), // 현재 시간 ISO 형식
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Final submission successful:", data.message);
+      return data;
+    } else {
+      console.error("Failed to send final submission.");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error in sendFinalSubmissionToAPI:", error);
+    return null;
+  }
+};

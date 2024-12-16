@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Canvas.css";
-import { sendKeywordToAPI, sendCanvasToAPI } from "../api/api";
+import { sendKeywordToAPI, sendCanvasToAPI, sendFinalSubmissionToAPI } from "../api/api";
 
 function Canvas() {
   const navigate = useNavigate();
@@ -135,10 +135,21 @@ function Canvas() {
   };
 
   // 최종 제출 팝업에서 제출 동작
-  const handleFinalSubmit = () => {
-    console.log(`닉네임: ${nickname}, 총합 점수: ${totalScore}`);
+  const handleFinalSubmit = async () => {
+    const submissionTime = new Date().toISOString(); // 현재 시간
+    console.log(`닉네임: ${nickname}, 총합 점수: ${totalScore}, 제출 시간: ${submissionTime}`);
+  
+    // API 호출: 사용자 닉네임, 총점, 제출 시간 전송
+    const response = await sendFinalSubmissionToAPI(nickname, totalScore);
+  
+    if (response) {
+      alert("최종 제출이 완료되었습니다!");
+      navigate("/", { replace: true }); // Home 컴포넌트로 이동, replace: true를 사용하면 히스토리를 덮어쓰므로 뒤로 가기를 통한 중복 제출 방지
+    } else {
+      alert("최종 제출 중 오류가 발생했습니다. 다시 시도해주세요.");
+    }
+  
     setIsFinalPopupOpen(false);
-    navigate("/"); // 홈 화면으로 이동
   };
 
   return (
