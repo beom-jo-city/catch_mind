@@ -2,24 +2,29 @@
 
 // 리더보드 데이터를 가져오는 함수
 export const fetchLeaderboardFromAPI = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:8000/api/leaderboard");
+  try {
+    const response = await fetch("https://cv05-catchmind.loca.lt/api/leaderboard", {
+      method: "GET",
+      headers: {
+        "bypass-tunnel-reminder": "true", // 우회 헤더 추가
+      },
+    });
       if (response.ok) {
-        return await response.json(); // JSON 데이터를 반환
+          return await response.json(); // JSON 데이터를 반환
       } else {
-        console.error("Failed to fetch leaderboard data.");
-        return null;
+          console.error("Failed to fetch leaderboard data.");
+          return null;
       }
-    } catch (error) {
+  } catch (error) {
       console.error("Error while fetching leaderboard data:", error);
       return null;
-    }
+  }
 };
 
 // FastAPI로 키워드와 증강 조건 전송
 export const sendKeywordToAPI = async (keyword, augmentation) => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/receive-keyword", {
+      const response = await fetch("https://cv05-catchmind.loca.lt/api/receive-keyword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +48,7 @@ export const sendKeywordToAPI = async (keyword, augmentation) => {
 // FastAPI로 캔버스를 PNG 이미지로 전송
 export const sendCanvasToAPI = async (imageData) => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/receive-image", {
+      const response = await fetch("https://cv05-catchmind.loca.lt/api/receive-image", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +73,7 @@ export const sendCanvasToAPI = async (imageData) => {
 // 사용자 닉네임, 총점, 제출 시간 전송
 export const sendFinalSubmissionToAPI = async (nickname, totalScore) => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/api/submit-userinfo", {
+    const response = await fetch("https://cv05-catchmind.loca.lt/api/submit-userinfo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
